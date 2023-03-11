@@ -1,0 +1,12 @@
+@import '~bootstrap/scss/bootstrap';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+.container {
+  padding-bottom: 120px;
+  box-sizing: border-box;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+}

@@ -1,0 +1,44 @@
+<!--共通フッター-->
+<footer>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f39800;">
+    <div class="container">
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+          <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to users_my_page_path(current_user) do %>
+            <i class="fas fa-home"></i>
+          <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to new_post_path, class: "nav-link text-dark" do %>
+            <i class="fa-regular fa-pencil"></i>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to favorites_path, class: "nav-link text-dark" do %>
+            <i class="fa-solid fa-heart"></i>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to search_path, class: "nav-link text-dark" do %>
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <% end %>
+          </li>
+          <% else %>
+          <li class="nav-item">
+            <%= link_to new_user_registration_path, class: "nav-link text-dark" do %>
+            <i class="fa-solid fa-user-plus"></i>sign up
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to new_user_session_path, class: "nav-link text-dark" do %>
+            <i class="fa-solid fa-right-to-bracket"></i>sign in
+            <% end %>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</footer>
