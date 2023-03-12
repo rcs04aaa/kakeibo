@@ -1,8 +1,15 @@
-<!--共通ヘッダー-->
+<!--ヘッダー-->
 <header>
   <nav class="navbar text-dark" style="background-color: #f39800;">
     <div class="d-flex justify-content-center">
       <a class="navbar-brand" href="/"><span>かこーぼ</span></a>
+      <% if user_signed_in? %>
+      <li class="nav-item">
+        <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-dark" do %>
+        <i class="fas fa-sign-out-alt"></i>ログアウト
+        <% end %>
+      </li>
+      <% end %>
     </div>
   </nav>
 </header>

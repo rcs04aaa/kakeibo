@@ -4,7 +4,20 @@
     <h5 class="col-4 text-center">ユーザー情報編集</h5>
   </div>
   <div class="col-10">
-    <%= form_with model: @user, url: users_information_path, local :true do |f| %>
-    
+    <%= form_with model: @user, url: users_information_path, local:true do |f| %>
+    <%#= render 'layouts/error.message', obj: @user %>
+    <div class="form-group">
+      <%= f.label :user_name %>
+      <%= f.text_field :user_name, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :email %>
+      <%= f.email_field :email, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit "更新", class: "btn btn-outline-secondary" %>
+    </div>
+    <% end %>
   </div>
 </div>
