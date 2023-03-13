@@ -8,6 +8,10 @@ class User < ApplicationRecord
   
   validates :user_name, length: { minimum: 1, maximum: 20 }
   
+  has_many :favorites, dependent: :destroy
+  has_many :posts, dependent: :destroy
+  
+  # ゲストログイン用
   def self.guest
     find_or_create_by!(email: 'guest@guest.com') do |user|
       user.password = SecureRandom.urlsafe_base64
@@ -16,6 +20,7 @@ class User < ApplicationRecord
     end
   end
   
+  # 退会後ログイン不可
   def active_for_authentication?
     super && (is_deleted == false)
   end

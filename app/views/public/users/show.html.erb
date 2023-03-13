@@ -5,9 +5,13 @@
       <%= link_to "編集する", users_information_edit_path(current_user), class: "btn btn-outline-secondary" %>
       
       <h5>カレンダー</h5>
+      <%= month_calendar do |date| %>
+        <%= date %>
+      <% end %>
     </div>
     <div class="col-6">
       <h5>グラフ</h5>
+      
     </div>
   </div>
 </div>
