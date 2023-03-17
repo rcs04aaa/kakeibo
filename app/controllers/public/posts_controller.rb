@@ -5,7 +5,7 @@ class Public::PostsController < ApplicationController
   end
   
   def index
-    @posts = @user.posts(current_user)
+    @posts = Post.all
   end
   
   def show

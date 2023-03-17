@@ -1,17 +1,28 @@
+<!--マイページ-->
 <div class="container">
   <div class="row">
-    <div class="col-6">
+    <div class="col-sm-2">
       <h3>マイページ</h3>
+      <table>
+        <tr>
+          <td><%= @user.user_name %></td>
+        </tr>
+        <tr>
+          <td><%= @user.email %></td>
+        </tr>
+      </table>
       <%= link_to "編集する", users_information_edit_path(current_user), class: "btn btn-outline-secondary" %>
-      
+    </div>
+    <div class="col-sm-5">
       <h5>カレンダー</h5>
       <%= month_calendar do |date| %>
-        <%= date %>
+        <%= date.day %><br>
+        <%= link_to "合計", posts_path(current_user) %>
       <% end %>
     </div>
-    <div class="col-6">
+    <div class="col-sm-5">
       <h5>グラフ</h5>
-      
+
     </div>
   </div>
 </div>

@@ -2,7 +2,35 @@
 <div class="container">
   <div class="row">
     <div class="col-10">
-      <h2>検索結果</h2>
+      <!--購入品検索-->
+      <table class="table table-hover table-inverse">
+        <% if @range == "Poat" %>
+        <h4>検索ワード：<%= @word %></h4>
+        <tbody>
+          <% @posts.each do |post| %>
+            <tr>
+              <td><%= post.payment_at %></td>
+              <td><%= post.content %></td>
+              <td><%= post.price %></td>
+              <td><%= post.quantity %></td>
+            </tr>
+          <% end %>
+        </tbody>
+        <% else %>
+        <!--カテゴリー検索-->
+          <h4>カテゴリー別：<%= @category %></h4>
+          <tbody>
+            <% @posts.each do |post| %>
+              <tr>
+                <td><%= post.payment_at %></td>
+                <td><%= post.content %></td>
+                <td><%= post.price %></td>
+                <td><%= post.quantity %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        <% end %>
+      </table>
     </div>
   </div>
 </div>

@@ -11,4 +11,13 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:user_name])
   end
+  
+  def after_sign_in_path_for(resource)
+    users_my_page_path
+  end
+  
+  def after_sign_out_path_(resource)
+    top_path
+  end
+  
 end

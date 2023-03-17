@@ -1,15 +1,29 @@
 <!--ヘッダー-->
-<header>
-  <nav class="navbar text-dark" style="background-color: #f39800;">
-    <div class="d-flex justify-content-center">
-      <a class="navbar-brand" href="/"><span>かこーぼ</span></a>
-      <% if user_signed_in? %>
-      <li class="nav-item">
-        <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-dark" do %>
-        <i class="fas fa-sign-out-alt"></i>ログアウト
-        <% end %>
-      </li>
+<header style="width: 100%;">
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f39800;">
+    <%= link_to "かこーぼ", '/' %>
+    <ul class="navbar-nav ml-auto">
+      <!--管理者側ログイン時のヘッダー-->
+      <% if admin_signed_in? %>
+        <li class="nav-item">
+          <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-dark" do %>
+            <i class="fas fa-sign-out-alt"></i>ログアウト
+          <% end %>
+        </li>
+      <!--会員側ログイン時のヘッダー-->
+      <% elsif user_signed_in? %>
+        <li class="nav-item">
+          <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-dark" do %>
+            <i class="fas fa-sign-out-alt"></i>ログアウト
+          <% end %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to new_user_session_path, class: "nav-link text-dark" do %>
+            <i class="fas fa-sign-in-alt"></i>ログイン
+          <% end %>
+        </li>
       <% end %>
-    </div>
+    </ul>
   </nav>
 </header>
