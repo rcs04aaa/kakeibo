@@ -6,6 +6,7 @@ class Public::PostsController < ApplicationController
   
   def index
     @posts = Post.all
+    @total = 0
   end
   
   def show
