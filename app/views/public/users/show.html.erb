@@ -12,18 +12,20 @@
         </tr>
       </table>
       <%= link_to "編集する", users_information_edit_path(current_user), class: "btn btn-outline-secondary" %>
+      <%= link_to "退会する", user_registration_path, method: :pacth, class: "btn btn-outline-secondary" %>
     </div>
     <div class="col-sm-5">
-      <h5>カレンダー</h5>
       <%= month_calendar do |date| %>
         <%= date.day %><br>
-        <%= link_to "合計", posts_path(current_user) %>
+        <%= link_to  @user.posts.where(payment_at: date).sum {|post| post.amount}, date_posts_path(date: date) %>
       <% end %>
     </div>
     <div class="col-sm-5">
-      <h5>グラフ</h5>
-      <%= @total.to_s(:delimited) %>
-
+      <h5>集計</h5>
+      <%# @category.each do |category| %>
+        <%# category.category_name %>
+        <%#= link_to  @user.posts.where(payment_at: date).sum {|post| post.amount}, date_posts_path(date: date) %>
+      <%# end %>
     </div>
   </div>
 </div>

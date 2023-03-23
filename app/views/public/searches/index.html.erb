@@ -4,7 +4,7 @@
     <div class="col-10">
       <!--購入品検索-->
       <table class="table table-hover table-inverse">
-        <% if @range == "Poat" %>
+        <% if @word.present? %>
         <h4>検索ワード：<%= @word %></h4>
         <tbody>
           <% @posts.each do |post| %>
@@ -18,7 +18,7 @@
         </tbody>
         <% else %>
         <!--カテゴリー検索-->
-          <h4>カテゴリー別：<%= @category %></h4>
+          <h4>カテゴリー：<%= @category.category_name %></h4>
           <tbody>
             <% @posts.each do |post| %>
               <tr>

@@ -1,5 +1,5 @@
 <!--一覧表示用テンプレート-->
-<div class="container">
+<!--<div class="container">-->
   <!--<tbody>-->
   <%#= posts.each do |post| %>
 <!--  <tr>-->
@@ -11,5 +11,30 @@
 <!--  </tr>-->
   <%# end %>
 <!--</tbody>-->
+<!--</div>-->
 
-</div>
+<table class="table table-hover table-inverse">
+  <tbody>
+    <% posts.each do |post| %>
+      <tr>
+        <td><%= post.payment_at %></td>
+        <td><%#= category.category_name %></td>
+        <td><%= post.content %></td>
+        <td><%= post.price %></td>
+        <td><%= post.quantity %></td>
+        <td>
+          <% if post.favorited?(current_user) %>
+            <%= link_to post_favorites_path(post.id), method: :delete do %>
+            <i class="fas fa-heart"></i>
+            <% end %>
+          <% else %>
+            <%= link_to post_favorites_path(post.id), method: :post do %>
+            <i class="far fa-heart"></i>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= total.to_s(:delimited) %>

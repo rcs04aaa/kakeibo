@@ -16,14 +16,21 @@ Rails.application.routes.draw do
       post 'users/guest_sign_in' => 'users/sessions#new_guest'
     end
     root to: 'homes#top'
-    resources :posts
+    resources :posts do
+      collection do
+        get :date
+        get :bookmarks
+      end
+      member do 
+        patch :bookmark
+      end
+    end
+    
     get 'users/my_page' => 'users#show'
     get '/users/information/edit' => 'users#edit'
     patch 'users/information' => 'users#update'
     get 'search' => 'searches#new'
     get 'search_result' => 'searches#index'
-    resource :favorites, only: [:create, :destroy]
-    get 'favorites' => 'favorites#index'
   end
 
   namespace :admin do

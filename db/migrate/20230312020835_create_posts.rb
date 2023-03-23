@@ -7,7 +7,8 @@ class CreatePosts < ActiveRecord::Migration[6.1]
       t.integer :quantity, null: false
       t.integer :price, null: false
       t.integer :amount, null: false
-      t.datetime :payment_at, null: false
+      t.date :payment_at, null: false
+      t.boolean :bookmark, null: false, default: false
 
       t.timestamps
     end

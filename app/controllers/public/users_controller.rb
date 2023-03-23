@@ -1,9 +1,9 @@
 class Public::UsersController < ApplicationController
 
   def show
-    # @posts = @user.posts
     @user = current_user
-    @total = 0
+    # @category = Category.find(params[:category_id])
+    # @posts = current_user.posts.where(payment_at: params["date"] )
   end
 
   def edit
@@ -13,17 +13,12 @@ class Public::UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update(user_params)
-      redirect_to users_my_page_path(current_user), notice: "更新が完了しました"
+      redirect_to users_my_page_path(current_user)  #, notice: "更新が完了しました"
     else
       render :edit
     end
   end
-
-  def favorites
-    @user = User.find(params[:id])
-    @favorite_posts = Post.find(favorites)
-  end
-
+  
   private
 
   def user_params

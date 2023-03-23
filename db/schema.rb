@@ -32,7 +32,8 @@ ActiveRecord::Schema.define(version: 2023_03_12_020959) do
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "post_id", null: false
+    t.integer "user", null: false
+    t.integer "post", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -44,7 +45,8 @@ ActiveRecord::Schema.define(version: 2023_03_12_020959) do
     t.integer "quantity", null: false
     t.integer "price", null: false
     t.integer "amount", null: false
-    t.datetime "payment_at", null: false
+    t.date "payment_at", null: false
+    t.boolean "bookmark", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

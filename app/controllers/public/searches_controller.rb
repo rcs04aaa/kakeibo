@@ -1,18 +1,14 @@
 class Public::SearchesController < ApplicationController
    before_action :authenticate_user!
 
-  def search
-    @range = params[:range]
+  def index
     @word = params[:word]
-    if @range == "Post"
-      @posts = Post.looks(params[:search], params[:word])
+    if @word.present?
+      @posts = Post.where("content like ?", "%" + params[:word] + "%")
     else
-      @categories = Category.looks(params[:search], params[:word])
+      @posts = Post.joins(:category).where(categories: {id: params[:category_id]})
+      @category = Category.find(params[:category_id])
     end
   end
-
-  def index
-    @posts = Post.all
-  end
-
+  
 end
