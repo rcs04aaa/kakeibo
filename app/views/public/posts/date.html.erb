@@ -18,13 +18,13 @@
             <% if post.bookmark %>
               <td>
                 <%= link_to bookmark_post_path(post) , method: :patch do %>
-                  <i class="fas fa-heart"></i>
+                  <i class="fas fa-heart" style="color: red;"></i>
                 <% end %>
               </td>
             <% else %>
               <td>
                 <%= link_to bookmark_post_path(post) , method: :patch do %>
-                  <i class="far fa-heart"></i>
+                  <i class="far fa-heart" style="color: red;"></i>
                 <% end %>
               </td>
             <% end %>
