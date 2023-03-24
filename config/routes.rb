@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       post 'users/guest_sign_in' => 'users/sessions#new_guest'
     end
     root to: 'homes#top'
-    resources :posts do
+    resources :posts, except: :show do
       collection do
         get :date
         get :bookmarks
