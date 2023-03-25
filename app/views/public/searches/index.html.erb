@@ -1,5 +1,5 @@
 <!--検索結果一覧画面-->
-<div class="container">
+<div class="container"> 
   <div class="row">
     <div class="col-10">
       <!--購入品検索-->
@@ -7,27 +7,13 @@
         <% if @word.present? %>
         <h4><%= @word %> の検索結果</h4>
         <tbody>
-          <% @posts.each do |post| %>
-            <tr>
-              <td><%= post.payment_at %></td>
-              <td><%= post.content %></td>
-              <td><%= post.price %></td>
-              <td><%= post.quantity %></td>
-            </tr>
-          <% end %>
+          <%= render 'public/posts/index', posts: @posts %>
         </tbody>
         <% else %>
         <!--カテゴリー検索-->
           <h4>カテゴリー：<%= @category.category_name %></h4>
           <tbody>
-            <% @posts.each do |post| %>
-              <tr>
-                <td><%= post.payment_at %></td>
-                <td><%= post.content %></td>
-                <td><%= post.price %></td>
-                <td><%= post.quantity %></td>
-              </tr>
-            <% end %>
+            <%= render 'public/posts/index', posts: @posts %>
           </tbody>
         <% end %>
       </table>

@@ -5,33 +5,7 @@
   </div>
   <div class="row">
     <div class="col-10">
-      <table class="table">
-        <tbody>
-          <% @posts.each do |post| %>
-          <tr>
-            <td><%= post.content %></td>
-            <td><%= post.price %></td>
-            <td><%= post.quantity %></td>
-            <td><%= post.amount %></td>
-            <td><%#= link_to "編集する", edit_post_path(post), class: "btn btn-outline-secondary" %></td>
-            <td><%#= link_to "削除する", post, method: :delete, data: {confirm: '本当に消しますか？'}, class: "btn btn-outline-secondary" %></td>
-            <% if post.bookmark %>
-              <td>
-                <%= link_to bookmark_post_path(post) , method: :patch do %>
-                  <i class="fas fa-heart" style="color: red;"></i>
-                <% end %>
-              </td>
-            <% else %>
-              <td>
-                <%= link_to bookmark_post_path(post) , method: :patch do %>
-                  <i class="far fa-heart" style="color: red;"></i>
-                <% end %>
-              </td>
-            <% end %>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <%= render 'index', posts: @posts %>
     </div>
   </div>
 </div>

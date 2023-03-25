@@ -1,12 +1,11 @@
 <!--カテゴリー詳細画面-->
 <div class="container">
   <div class="row">
-    <%#= @date %><p>の合計金額</p><%#= @posts.where(payment_at: @date).sum {|post| post.amount} %><p>円</p>
+    <%#= @posts.category_id %><p>の合計金額</p><%#= @posts(:category_id).sum(:amount) %><p>円</p>
   </div>
   <div class="row">
     <div class="col-10">
-      
-      
+      <%= render 'index', posts: @posts %>
     </div>
   </div>
 </div>

@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     patch 'users/information' => 'users#update'
     get 'search' => 'searches#new'
     get 'search_result' => 'searches#index'
+    patch 'users/withdraw' => 'users#withdraw'
   end
 
   namespace :admin do

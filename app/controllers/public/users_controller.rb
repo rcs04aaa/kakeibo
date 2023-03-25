@@ -2,8 +2,7 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = current_user
-    # @category = Category.find(params[:category_id])
-    # @posts = current_user.posts.where(payment_at: params["date"] )
+    @posts = Post.group(:category_id).sum(:amount)
   end
 
   def edit
@@ -17,6 +16,13 @@ class Public::UsersController < ApplicationController
     else
       render :edit
     end
+  end
+  
+  def withdraw
+    @user = current_user
+    @user.update(is_deleted: true)
+    reset_session
+    redirect_to root_path
   end
   
   private

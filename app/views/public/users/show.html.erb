@@ -12,7 +12,7 @@
         </tr>
       </table>
       <%= link_to "編集する", users_information_edit_path(current_user), class: "btn btn-outline-secondary" %>
-      <%= link_to "退会する", user_registration_path, method: :pacth, class: "btn btn-outline-secondary" %>
+      <%= link_to "退会する", users_withdraw_path, method: :patch, class: "btn btn-outline-secondary" %>
     </div>
     <div class="col-sm-5">
       <%= month_calendar do |date| %>
@@ -22,10 +22,10 @@
     </div>
     <div class="col-sm-5">
       <h5>集計</h5>
-      <%# @category.each do |category| %>
-        <%# category.category_name %>
-        <%#= link_to  @user.posts.where(payment_at: date).sum {|post| post.amount}, date_posts_path(date: date) %>
-      <%# end %>
+      <% @posts.each do |category_id, amount| %>
+        <%= Category.find(category_id).category_name %>
+        <%= link_to amount, posts_path(category_id: category_id) %>
+      <% end %>
     </div>
   </div>
 </div>
