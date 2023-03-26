@@ -1,7 +1,7 @@
 <!--カテゴリー詳細画面-->
 <div class="container">
   <div class="row">
-    <%#= @posts.category_id %><p>の合計金額</p><%#= @posts(:category_id).sum(:amount) %><p>円</p>
+    <h5>【<%= @category_name %>】の合計金額  <%= @posts.sum(:amount) %>円</h5>
   </div>
   <div class="row">
     <div class="col-10">

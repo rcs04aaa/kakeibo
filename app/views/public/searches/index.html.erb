@@ -1,17 +1,17 @@
 <!--検索結果一覧画面-->
-<div class="container"> 
+<div class="container" style="padding-bottom: 100px;"> 
   <div class="row">
     <div class="col-10">
       <!--購入品検索-->
       <table class="table table-hover table-inverse">
         <% if @word.present? %>
-        <h4><%= @word %> の検索結果</h4>
-        <tbody>
-          <%= render 'public/posts/index', posts: @posts %>
-        </tbody>
+          <h5>"<%= @word %>" の検索結果</h5>
+          <tbody>
+            <%= render 'public/posts/index', posts: @posts %>
+          </tbody>
         <% else %>
         <!--カテゴリー検索-->
-          <h4>カテゴリー：<%= @category.category_name %></h4>
+          <h5>【<%= @category.category_name %>】の検索結果</h5>
           <tbody>
             <%= render 'public/posts/index', posts: @posts %>
           </tbody>

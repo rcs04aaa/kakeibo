@@ -1,5 +1,5 @@
 <!--お気に入り一覧画面-->
-<div class="container">
+<div class="container" style="padding-bottom: 100px;">
   <div class="row">
     <div class="col-10">
       <h5>お気に入り一覧</h5>
@@ -7,6 +7,6 @@
     </div>
   </div>
   <div class="row">
-    <p>合計金額</p><%= @bookmarks.where(bookmark: true).sum {|post| post.amount} %><p>円</p>
+    <h6>合計金額  <%= @bookmarks.where(bookmark: true).sum {|post| post.amount} %>円</h6>
   </div>
 </div>

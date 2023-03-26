@@ -1,4 +1,4 @@
 ja:
   simple_calendar:
-    previous: "<<"
-    next: ">>"
+    previous: "<"
+    next: ">"

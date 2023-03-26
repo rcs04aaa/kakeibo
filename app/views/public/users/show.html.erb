@@ -1,6 +1,7 @@
 <!--マイページ-->
-<div class="container">
+<div class="container" style="padding-bottom: 100px;">
   <div class="row">
+    <!--ユーザー情報-->
     <div class="col-sm-2">
       <h3>マイページ</h3>
       <table>
@@ -11,9 +12,14 @@
           <td><%= @user.email %></td>
         </tr>
       </table>
-      <%= link_to "編集する", users_information_edit_path(current_user), class: "btn btn-outline-secondary" %>
-      <%= link_to "退会する", users_withdraw_path, method: :patch, class: "btn btn-outline-secondary" %>
+      <% if @user.email == 'guest@guest.com' %>
+        <p>※ゲストユーザーは<br>ユーザー情報の編集ができません。</p>
+      <% else %>
+        <%= link_to "編集する", users_information_edit_path(current_user), class: "btn btn-outline-secondary" %>
+        <%= link_to "退会する", users_withdraw_path, method: :patch, class: "btn btn-outline-secondary" %>
+      <% end %>
     </div>
+    <!--支出データ-->
     <div class="col-sm-5">
       <%= month_calendar do |date| %>
         <%= date.day %><br>
@@ -21,11 +27,15 @@
       <% end %>
     </div>
     <div class="col-sm-5">
-      <h5>集計</h5>
-      <% @posts.each do |category_id, amount| %>
-        <%= Category.find(category_id).category_name %>
-        <%= link_to amount, posts_path(category_id: category_id) %>
-      <% end %>
+      <tbody>
+        <h5><%= @month %>月の支出合計  <%= @monthly_amount %>円</h5>
+        <% @category_total.each do |category_id, amount| %>
+          <tr>
+            <td><%= Category.find(category_id).category_name %></td>
+            <td><%= link_to amount, posts_path(category_id: category_id) %>円</td>
+          </tr>
+        <% end %>
+      </tbody>
     </div>
   </div>
 </div>

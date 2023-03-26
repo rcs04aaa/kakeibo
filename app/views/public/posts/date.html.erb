@@ -1,11 +1,40 @@
 <!--その日の収支詳細画面-->
 <div class="container">
   <div class="row">
-    <%= @date %><p>の支出合計</p><%= @posts.where(payment_at: @date).sum {|post| post.amount} %><p>円</p>
+    <h5><%= @date %></h5>
   </div>
   <div class="row">
     <div class="col-10">
-      <%= render 'index', posts: @posts %>
+      <table class="table">
+        <tbody>
+          <% @posts.each do |post| %>
+            <tr>
+              <td><%= post.content %></td>
+              <td><%= post.price %></td>
+              <td><%= post.quantity %></td>
+              <td><%= post.amount %></td>
+              <td><%= link_to "編集する", edit_post_path(post), class: "btn btn-outline-secondary" %></td>
+              <td><%= link_to "削除する", post, method: :delete, data: {confirm: '本当に消しますか？'}, class: "btn btn-outline-secondary" %></td>
+              <% if post.bookmark %>
+                <td>
+                  <%= link_to bookmark_post_path(post) , method: :patch do %>
+                    <i class="fas fa-heart" style="color: red;"></i>
+                  <% end %>
+                </td>
+              <% else %>
+                <td>
+                  <%= link_to bookmark_post_path(post) , method: :patch do %>
+                    <i class="far fa-heart" style="color: red;"></i>
+                  <% end %>
+                </td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
+  </div>
+  <div class="row">
+    <h6>支出合計<%= @posts.where(payment_at: @date).sum {|post| post.amount} %>円</h6>
   </div>
 </div>

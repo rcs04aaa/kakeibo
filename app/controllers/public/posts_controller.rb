@@ -5,12 +5,14 @@ class Public::PostsController < ApplicationController
   end
   
   def index
-    @posts = Post.all
+    @month = params["month"]
+    @posts = Post.where(user_id: current_user.id, category_id: params[:category_id])
+    @category_name = Category.find(params[:category_id]).category_name
   end
   
   def date
     @date =  params["date"] 
-    @posts = current_user.posts.where(payment_at: params["date"] )
+    @posts = current_user.posts.where(payment_at: params["date"])
   end
   
   def edit
@@ -20,7 +22,7 @@ class Public::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to date_posts_path(date: @post.payment_at) # , notice: "更新が完了しました"
+      redirect_to date_posts_path(date: @post.payment_at)
     else
       render 'edit'
     end
@@ -31,7 +33,7 @@ class Public::PostsController < ApplicationController
     @post.user_id = current_user.id
     @post.amount = @post.price* @post.quantity
     if @post.save
-      redirect_to users_my_page_path(current_user)#, notice: "登録が完了しました"
+      redirect_to users_my_page_path(current_user)
     else
       render 'new'
     end
@@ -48,14 +50,14 @@ class Public::PostsController < ApplicationController
   end
   
   def bookmarks
-    @bookmarks = Post.where(bookmark: true)
+    @bookmarks = Post.where(bookmark: true).where(user_id: current_user.id)
     @posts = current_user.posts.where(payment_at: params["date"] )
   end
   
   def destroy
     post = Post.find(params[:id])
     post.destroy
-    redirect_to  date_posts_path(date: post.payment_at) #, notice: "削除が完了しました"
+    redirect_to  date_posts_path(date: post.payment_at)
   end
   
   private
