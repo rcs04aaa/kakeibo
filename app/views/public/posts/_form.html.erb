@@ -7,7 +7,7 @@
     </div>
     <div class="form-group">
       <p>カテゴリー</p>
-      <%= f.select :category_id, [["食費", "0"], ["日用品", "1"], ["光熱費", "2"], ["衣服", "3"], ["美容費", "4"], ["通信費", "5"], ["交通費", "6"], ["医療費", "7"], ["交際費", "8"], ["娯楽費", "9"], ["教育費", "10"], ["その他", "11"]], include_blank: "選択してください" %>
+      <%= f.collection_select :category_id, Category.all, :id, :category_name, { include_blank: "選択してください" }, { class: "form-control"} %>
     </div>
     <div class="form-group">
       <%= f.label :content, "支出内容" %>

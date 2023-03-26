@@ -31,7 +31,6 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @post.amount = @post.price* @post.quantity
     if @post.save
       redirect_to users_my_page_path(current_user)
     else
