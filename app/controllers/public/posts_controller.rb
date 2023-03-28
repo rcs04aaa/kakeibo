@@ -5,7 +5,6 @@ class Public::PostsController < ApplicationController
   end
   
   def index
-    @month = params["month"]
     @posts = Post.where(user_id: current_user.id, category_id: params[:category_id])
     @category_name = Category.find(params[:category_id]).category_name
   end
@@ -50,7 +49,6 @@ class Public::PostsController < ApplicationController
   
   def bookmarks
     @bookmarks = Post.where(bookmark: true).where(user_id: current_user.id)
-    @posts = current_user.posts.where(payment_at: params["date"] )
   end
   
   def destroy
